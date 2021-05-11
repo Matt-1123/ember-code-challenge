@@ -1,0 +1,25 @@
+<Page::Header @title="Dashboard" />
+<Page::Content>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="cart-title">
+            At a glance
+          </h5>
+          <p>{{customers.length}} customers in pipeline</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="cart-title">
+            Top prospects
+          </h5>
+          <DashboardTable @model={{this.customers}} />
+        </div>
+      </div>
+    </div>
+  </div>
+</Page::Content>
