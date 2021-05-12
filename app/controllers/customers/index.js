@@ -12,6 +12,8 @@ import { tracked } from "@glimmer/tracking";
 export default class CustomersIndexController extends Controller {
   @tracked sortProperty = "lastName";
 
+  @tracked searchQuery = "";
+
   @sort("model", "customersSortProps")
   sortedCustomers;
 
@@ -22,5 +24,11 @@ export default class CustomersIndexController extends Controller {
   @action
   updateSortProperty(event) {
     this.sortProperty = event.target.value;
+  }
+
+  @action
+  searchCustomers(event) {
+    this.searchQuery = event.target.value;
+    console.log(event.target.value);
   }
 }

@@ -3,25 +3,34 @@ import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 import { empty } from "@ember/object/computed";
 import { A } from "@ember/array";
+import { tracked } from "@glimmer/tracking";
 
 export default class DashboardTableComponent extends Component {
   @service router;
   @empty("model") isEmpty;
 
-  get model() {
-    return this.args.model ? this.args.model : A();
-  }
+  // @tracked showAll = false;
 
-  // get fullName(item:A) {
-  //   return `${item.firstName} ${item.lastName}`;
-  // }
+  @tracked items = this.model;
+
+  get model() {
+    let list = this.args.model ? this.args.model : A();
+
+    // add new field
+    list.forEach((item) => {
+      item.fullName = `${item.firstName} ${item.lastName}`;
+    });
+    // if (!showAll) {
+    //   list.slice(0, 4);
+    // }
+    return list;
+  }
 
   get columns() {
     return [
       {
         name: "Name",
-        // valuePath: this.fullName(),
-        value: this.fullName 
+        valuePath: "fullName",
         isSortable: false,
       },
       {
@@ -43,4 +52,10 @@ export default class DashboardTableComponent extends Component {
   onRowClick(row) {
     this.router.transitionTo("customers.customer", row.id);
   }
+
+  // @action
+  // showAll() {
+  //   this.showAll = !this.showAll;
+  //   items = this.model;
+  // }
 }

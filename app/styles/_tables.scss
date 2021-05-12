@@ -37,3 +37,12 @@
     cursor: pointer;
   }
 }
+
+.show-all {
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue;
+    }
+  }

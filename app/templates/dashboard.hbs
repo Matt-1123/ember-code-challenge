@@ -7,7 +7,16 @@
           <h5 class="cart-title">
             At a glance
           </h5>
-          <p>{{customers.length}} customers in pipeline</p>
+          <div class="d-flex py-3 justify-content-around">
+            <div>
+              <h2>{{customers.length}}</h2>
+              <p>Customers in pipeline</p>
+            </div>
+            <div>
+              <h2>${{this.totalBudget}}</h2>
+              <p>Total forecasted budget</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

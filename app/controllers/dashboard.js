@@ -3,17 +3,18 @@ import { action } from "@ember/object";
 import { sort } from "@ember/object/computed";
 import { tracked } from "@glimmer/tracking";
 
-export default class CustomersIndexController extends Controller {
-  @tracked sortProperty = "budget";
+export default class DashboardIndexController extends Controller {
+  @tracked sortProperty = "budget:desc";
+  @tracked totalBudget = 0;
 
   @sort("model", "customersSortProps")
-  sortedCustomers;
+  customers;
 
   get customersSortProps() {
     return [this.sortProperty];
   }
 
-  get fullName(item:A) {
-    return `${item.firstName} ${item.lastName}`;
+  get totalBudget() {
+    totalBudget = customers.budget.reduce((a, b) => a + b, 0);
   }
 }
